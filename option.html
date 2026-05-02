@@ -63,6 +63,7 @@ main {
     box-shadow: 0 12px 30px rgba(0,0,0,0.08);
     border: 1px solid rgba(30,140,141,0.12);
     transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
 }
 .option-card:hover {
     transform: translateY(-6px);
@@ -193,5 +194,15 @@ footer {
         <img src="logo2.jpg" alt="Footer Logo">
     </div>
 </footer>
+<script>
+document.querySelectorAll('.option-card').forEach(card => {
+    card.addEventListener('click', function() {
+        const link = this.querySelector('a.action-btn');
+        if (link) {
+            window.location.href = link.href;
+        }
+    });
+});
+</script>
 </body>
 </html>
