@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking - Skills Verification Program</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* HEADER */
+header {
+    background: white;
+    width: 100%;
+    padding: 0px 40px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo img { height: 90px; }
+
+.logo a {
+    text-decoration: none;
+}
+
+/* MAIN CONTENT */
+main {
+    min-height: calc(100vh - 150px);
+    padding: 40px;
+    background: #f9f9f9;
+}
+
+/* FORM STYLES */
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.form-title {
+    text-align: center;
+    color: #1e8c8d;
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    padding: 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    background: #fafafa;
+    transition: border-color 0.3s;
+}
+
+.form-group:hover {
+    border-color: #1e8c8d;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #1e8c8d;
+}
+
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 200px;
+}
+
+.radio-option input[type="radio"] {
+    width: auto;
+    margin: 0;
+}
+
+.submit-btn {
+    background: #1e8c8d;
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    display: block;
+    margin: 30px auto 0;
+}
+
+.checkbox-option {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.checkbox-option input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+.checkbox-option label {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+}
+
+/* PAYMENT SECTION STYLES */
+.form-section {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+}
+
+.section-title {
+    text-align: center;
+    color: #1e8c8d;
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.packages-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.package-card {
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    background: #fafafa;
+    transition: border-color 0.3s;
+}
+
+.package-card.selected {
+    border-color: #1e8c8d;
+    background: #f0f8f8;
+}
+
+.package-card h3 {
+    color: #1e8c8d;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.package-card p {
+    margin: 8px 0;
+    color: #333;
+    font-size: 14px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* FOOTER */
+footer {
+    background: #f5f5f5;
+    padding: 40px;
+    text-align: center;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.social-icons a {
+    width: 45px;
+    height: 45px;
+    background: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: #1e8c8d;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: #1e8c8d;
+    color: white;
+}
+
+.footer-logo img {
+    height: 50px;
+}
+
+/* PROFESSIONAL NOTICE STYLES */
+.notice-section {
+    max-width: 680px;
+    margin: 0 auto 1.5rem;
+    width: calc(100% - 40px);
+    background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+    border: 2px solid #ffc107;
+    border-radius: 15px;
+    padding: 1.1rem 1.25rem;
+    position: relative;
+}
+
+.notice-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ffc107, #ff8c00);
+    border-radius: 15px 15px 0 0;
+}
+
+.notice-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #ffc107;
+}
+
+.notice-header i {
+    color: #ff6b35;
+    font-size: 1.5rem;
+}
+
+.notice-header h3 {
+    color: #d2691e;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.notice-content {
+    margin-bottom: 1.5rem;
+}
+
+.notice-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 1rem;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    border-left: 4px solid #ffc107;
+}
+
+.notice-item i {
+    color: #ff6b35;
+    font-size: 1.2rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.notice-item .notice-text {
+    color: #333;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.notice-item .notice-text strong {
+    color: #d2691e;
+}
+
+.notice-footer {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid #ffeaa7;
+}
+
+.notice-footer .english-text {
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.notice-footer .urdu-text {
+    color: #555;
+    line-height: 1.8;
+    font-size: 0.9rem;
+    direction: rtl;
+    text-align: right;
+    border-top: 1px solid #ffeaa7;
+    padding-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 16px 20px;
+    }
+
+    .logo img {
+        height: 55px;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    .form-container,
+    .form-section,
+    .notice-section {
+        padding: 20px;
+        margin-bottom: 24px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .radio-group {
+        flex-direction: column;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 14px;
+    }
+
+    .form-group {
+        padding: 16px;
+    }
+
+    .form-group input,
+    .form-group select {
+        font-size: 15px;
+    }
+
+    .packages-section {
+        gap: 15px;
+    }
+}
+        </a>
+    </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main>
+    <div class="form-container">
+        <h1 class="form-title">Skills Verification Program Registration</h1>
+        <form action="#" method="post" id="registrationForm">
+
+            <!-- Personal Information -->
+            <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" name="firstName" required>
+                <div class="checkbox-option">
+                    <input type="checkbox" id="noFirstName" name="noFirstName">
+                    <label for="noFirstName">I don't have a first name</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name *</label>
+                <input type="text" id="lastName" name="lastName" required>
+                <div class="checkbox-option">
+                    <input type="checkbox" id="noLastName" name="noLastName">
+                    <label for="noLastName">I don't have a last name</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="passportNo">Passport No *</label>
+                <input type="text" id="passportNo" name="passportNo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="nationality">Nationality *</label>
+                <select id="nationality" name="nationality" required>
+                    <option value="">Select Nationality</option>
+                    <option value="Afghanistan">Afghanistan</option>
+                    <option value="Albania">Albania</option>
+                    <option value="Algeria">Algeria</option>
+                    <option value="American Samoa">American Samoa</option>
+                    <option value="Andorra">Andorra</option>
+                    <option value="Angola">Angola</option>
+                    <option value="Anguilla">Anguilla</option>
+                    <option value="Antarctic">Antarctic</option>
+                    <option value="Antigua">Antigua</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Armenia">Armenia</option>
+                    <option value="Aruba">Aruba</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Austria">Austria</option>
+                    <option value="Azerbaijan">Azerbaijan</option>
+                    <option value="Bahamas">Bahamas</option>
+                    <option value="Bahrain">Bahrain</option>
+                    <option value="Bangladesh">Bangladesh</option>
+                    <option value="Belarus">Belarus</option>
+                    <option value="Belgium">Belgium</option>
+                    <option value="Belize">Belize</option>
+                    <option value="Benin">Benin</option>
+                    <option value="Bermuda">Bermuda</option>
+                    <option value="Bhutan">Bhutan</option>
+                    <option value="Bolivia">Bolivia</option>
+                    <option value="Bosnia">Bosnia</option>
+                    <option value="Botswana">Botswana</option>
+                    <option value="Bouvet Island">Bouvet Island</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                    <option value="Brunei">Brunei</option>
+                    <option value="Bulgaria">Bulgaria</option>
+                    <option value="Burkina Faso">Burkina Faso</option>
+                    <option value="Burundi">Burundi</option>
+                    <option value="Cambodia">Cambodia</option>
+                    <option value="Cameroon">Cameroon</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Cape Verde">Cape Verde</option>
+                    <option value="Cayman Island">Cayman Island</option>
+                    <option value="Central African Republic">Central African Republic</option>
+                    <option value="Chad">Chad</option>
+                    <option value="Chile">Chile</option>
+                    <option value="China">China</option>
+                    <option value="Christmas Island">Christmas Island</option>
+                    <option value="Cocos Island">Cocos Island</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Comoros">Comoros</option>
+                    <option value="Congo">Congo</option>
+                    <option value="Cook Island">Cook Island</option>
+                    <option value="Costa Rica">Costa Rica</option>
+                    <option value="Cote Divoire">Cote Divoire</option>
+                    <option value="Croatia">Croatia</option>
+                    <option value="Cuba">Cuba</option>
+                    <option value="Cyprus">Cyprus</option>
+                    <option value="Czech Republic">Czech Republic</option>
+                    <option value="Denmark">Denmark</option>
+                    <option value="Djibouti">Djibouti</option>
+                    <option value="Dominica">Dominica</option>
+                    <option value="Dominican Republic">Dominican Republic</option>
+                    <option value="East Timor">East Timor</option>
+                    <option value="Ecuador">Ecuador</option>
+                    <option value="Egypt">Egypt</option>
+                    <option value="El Salvador">El Salvador</option>
+                    <option value="Equatorial Guinea">Equatorial Guinea</option>
+                    <option value="Eritrea">Eritrea</option>
+                    <option value="Estonia">Estonia</option>
+                    <option value="Ethiopia">Ethiopia</option>
+                    <option value="Falkland Islands">Falkland Islands</option>
+                    <option value="Faroe Islands">Faroe Islands</option>
+                    <option value="Fiji">Fiji</option>
+                    <option value="Finland">Finland</option>
+                    <option value="France">France</option>
+                    <option value="France (Metropolitan)">France (Metropolitan)</option>
+                    <option value="French Guiana">French Guiana</option>
+                    <option value="French Polynesia">French Polynesia</option>
+                    <option value="French Southern and Antarctic">French Southern and Antarctic</option>
+                    <option value="Gabon">Gabon</option>
+                    <option value="Gambia">Gambia</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Ghana">Ghana</option>
+                    <option value="Gibraltar">Gibraltar</option>
+                    <option value="Greece">Greece</option>
+                    <option value="Greenland">Greenland</option>
+                    <option value="Grenada">Grenada</option>
+                    <option value="Guadeloupe">Guadeloupe</option>
+                    <option value="Guam">Guam</option>
+                    <option value="Guatemala">Guatemala</option>
+                    <option value="Guinea">Guinea</option>
+                    <option value="Guinea-Bissau">Guinea-Bissau</option>
+                    <option value="Guyana">Guyana</option>
+                    <option value="Haiti">Haiti</option>
+                    <option value="Heard Island and McDonald Island">Heard Island and McDonald Island</option>
+                    <option value="Honduras">Honduras</option>
+                    <option value="Hungary">Hungary</option>
+                    <option value="Iceland">Iceland</option>
+                    <option value="India">India</option>
+                    <option value="Indonesia">Indonesia</option>
+                    <option value="Iran">Iran</option>
+                    <option value="Iraq">Iraq</option>
+                    <option value="Ireland">Ireland</option>
+                    <option value="Italy">Italy</option>
+                    <option value="Jamaica">Jamaica</option>
+                    <option value="Japan">Japan</option>
+                    <option value="Jordan">Jordan</option>
+                    <option value="Kazakhstan">Kazakhstan</option>
+                    <option value="Kenya">Kenya</option>
+                    <option value="Kingdom Saudi Arabia">Kingdom Saudi Arabia</option>
+                    <option value="Kiribati">Kiribati</option>
+                    <option value="Kosovo">Kosovo</option>
+                    <option value="Kuwait">Kuwait</option>
+                    <option value="Kyrgyzstan">Kyrgyzstan</option>
+                    <option value="Laos">Laos</option>
+                    <option value="Latvia">Latvia</option>
+                    <option value="Lebanon">Lebanon</option>
+                    <option value="Lesotho">Lesotho</option>
+                    <option value="Liberia">Liberia</option>
+                    <option value="Libya">Libya</option>
+                    <option value="Liechtenstein">Liechtenstein</option>
+                    <option value="Lithuania">Lithuania</option>
+                    <option value="Luxembourg">Luxembourg</option>
+                    <option value="Macau">Macau</option>
+                    <option value="Madagascar">Madagascar</option>
+                    <option value="Malawi">Malawi</option>
+                    <option value="Malaysia">Malaysia</option>
+                    <option value="Maldives">Maldives</option>
+                    <option value="Mali">Mali</option>
+                    <option value="Malta">Malta</option>
+                    <option value="Marshall Island">Marshall Island</option>
+                    <option value="Marshall Islands">Marshall Islands</option>
+                    <option value="Martinique">Martinique</option>
+                    <option value="Mauritius">Mauritius</option>
+                    <option value="Mayotte">Mayotte</option>
+                    <option value="Mexico">Mexico</option>
+                    <option value="Micronesia (Federated Stat)">Micronesia (Federated Stat)</option>
+                    <option value="Monaco">Monaco</option>
+                    <option value="Mongolia">Mongolia</option>
+                    <option value="MONTENEGRO">MONTENEGRO</option>
+                    <option value="Montserrat">Montserrat</option>
+                    <option value="Morocco">Morocco</option>
+                    <option value="Mozambique">Mozambique</option>
+                    <option value="Myanmar">Myanmar</option>
+                    <option value="Namibia">Namibia</option>
+                    <option value="Nauru">Nauru</option>
+                    <option value="Nepal">Nepal</option>
+                    <option value="Netherlands">Netherlands</option>
+                    <option value="Netherlands Antilles">Netherlands Antilles</option>
+                    <option value="New Caledonia">New Caledonia</option>
+                    <option value="New Zealand">New Zealand</option>
+                    <option value="Nicaragua">Nicaragua</option>
+                    <option value="Niger">Niger</option>
+                    <option value="Nigeria">Nigeria</option>
+                    <option value="Niue">Niue</option>
+                    <option value="Non-Bahraini">Non-Bahraini</option>
+                    <option value="Non-Emirati">Non-Emirati</option>
+                    <option value="Non-Kuwaiti">Non-Kuwaiti</option>
+                    <option value="Non-Omani">Non-Omani</option>
+                    <option value="Non-Qatari">Non-Qatari</option>
+                    <option value="Norfolk Island">Norfolk Island</option>
+                    <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+                    <option value="North Korea">North Korea</option>
+                    <option value="Norway">Norway</option>
+                    <option value="Oman">Oman</option>
+                    <option value="Pakistan">Pakistan</option>
+                    <option value="Palau">Palau</option>
+                    <option value="Palestinian Territory (Occupied)">Palestinian Territory (Occupied)</option>
+                    <option value="Panama">Panama</option>
+                    <option value="Papua New Guinea">Papua New Guinea</option>
+                    <option value="Paraguay">Paraguay</option>
+                    <option value="Peru">Peru</option>
+                    <option value="Philippines">Philippines</option>
+                    <option value="Pitcairn Islands">Pitcairn Islands</option>
+                    <option value="Poland">Poland</option>
+                    <option value="Portugal">Portugal</option>
+                    <option value="Puerto Rico">Puerto Rico</option>
+                    <option value="Qatar">Qatar</option>
+                    <option value="Republic of Moldova">Republic of Moldova</option>
+                    <option value="Republic of South Sudan">Republic of South Sudan</option>
+                    <option value="Reunion">Reunion</option>
+                    <option value="Romania">Romania</option>
+                    <option value="Russian Federation">Russian Federation</option>
+                    <option value="Rwanda">Rwanda</option>
+                    <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                    <option value="Saint Lucia">Saint Lucia</option>
+                    <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
+                    <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+                    <option value="Samoa">Samoa</option>
+                    <option value="San Marino">San Marino</option>
+                    <option value="Sao Tome And Principe">Sao Tome And Principe</option>
+                    <option value="Senegal">Senegal</option>
+                    <option value="SERBIA">SERBIA</option>
+                    <option value="Serbia and Montenegro">Serbia and Montenegro</option>
+                    <option value="Seychelles">Seychelles</option>
+                    <option value="Sierra Leone">Sierra Leone</option>
+                    <option value="Singapore">Singapore</option>
+                    <option value="Slovak Republic">Slovak Republic</option>
+                    <option value="Slovenia">Slovenia</option>
+                    <option value="Solomon Islands">Solomon Islands</option>
+                    <option value="Somalia">Somalia</option>
+                    <option value="South Africa">South Africa</option>
+                    <option value="South Georgia and The South">South Georgia and The South</option>
+                    <option value="South Korea">South Korea</option>
+                    <option value="Spain">Spain</option>
+                    <option value="Sri Lanka">Sri Lanka</option>
+                    <option value="ST. Helena">ST. Helena</option>
+                    <option value="Sudan">Sudan</option>
+                    <option value="Suriname">Suriname</option>
+                    <option value="Svalbard">Svalbard</option>
+                    <option value="Swaziland">Swaziland</option>
+                    <option value="Sweden">Sweden</option>
+                    <option value="Switzerland">Switzerland</option>
+                    <option value="Syrian">Syrian</option>
+                    <option value="Taiwan">Taiwan</option>
+                    <option value="Tajikistan">Tajikistan</option>
+                    <option value="Thailand">Thailand</option>
+                    <option value="The Former Yugoslav Republic of Macedonia">The Former Yugoslav Republic of Macedonia</option>
+                    <option value="Togo">Togo</option>
+                    <option value="Tokelau">Tokelau</option>
+                    <option value="Tonga">Tonga</option>
+                    <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                    <option value="Tunisia">Tunisia</option>
+                    <option value="Turkey">Turkey</option>
+                    <option value="Turkmenistan">Turkmenistan</option>
+                    <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
+                    <option value="Tuvalu">Tuvalu</option>
+                    <option value="Uganda">Uganda</option>
+                    <option value="Ukraine">Ukraine</option>
+                    <option value="United Arab Emirates">United Arab Emirates</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="United States">United States</option>
+                    <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+                    <option value="UR Tanzania">UR Tanzania</option>
+                    <option value="Uruguay">Uruguay</option>
+                    <option value="Uzbekistan">Uzbekistan</option>
+                    <option value="Vanuatu">Vanuatu</option>
+                    <option value="Vatican City State">Vatican City State</option>
+                    <option value="Venezuela">Venezuela</option>
+                    <option value="Vietnam">Vietnam</option>
+                    <option value="Virgin Islands">Virgin Islands</option>
+                    <option value="Virgin Islands(U.S.)">Virgin Islands(U.S.)</option>
+                    <option value="Wallis and Futuna">Wallis and Futuna</option>
+                    <option value="Yemen">Yemen</option>
+                    <option value="Yugoslavia">Yugoslavia</option>
+                    <option value="Zaire">Zaire</option>
+                    <option value="Zambia">Zambia</option>
+                    <option value="Zimbabwe">Zimbabwe</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="dob">Date of Birth *</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender *</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="maritalStatus">Marital Status *</label>
+                <select id="maritalStatus" name="maritalStatus" required>
+                    <option value="">Select Marital Status</option>
+                    <option value="Single">Single</option>
+                    <option value="Married">Married</option>
+                    <option value="Divorced">Divorced</option>
+                    <option value="Widowed">Widowed</option>
+                </select>
+            </div>
+
+            <!-- Passport Information -->
+            <div class="form-group">
+                <label for="passportExpiry">Passport Expiry Date *</label>
+                <input type="date" id="passportExpiry" name="passportExpiry" required>
+            </div>
+
+            <div class="form-group">
+                <label for="passportIssueDate">Passport Issue Date *</label>
+                <input type="date" id="passportIssueDate" name="passportIssueDate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="passportIssuePlace">Passport Issue Place *</label>
+                <input type="text" id="passportIssuePlace" name="passportIssuePlace" required>
+            </div>
+
+            <!-- Skills and Experience -->
+            <div class="form-group">
+                <label>Do you have the knowledge and skills required for the occupation you intend to apply for? - کیا آپ کے پاس وہ علم اور مہارت ہے جس کے لیے آپ درخواست دینا چاہتے ہیں؟ *</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="skills1" name="skills" value="yes" required>
+                        <label for="skills1">Yes - جی ہاں</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="skills2" name="skills" value="yes_with_certificates" required>
+                        <label for="skills2">Yes, & I have certificate(s), course(s), or training. - ہاں، اور میرے پاس سرٹیفکیٹ، کورس یا تربیت ہے</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Experience Level *</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="exp1" name="experience" value="less_than_3" required>
+                        <label for="exp1">Less than 3 years</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="exp2" name="experience" value="3-5" required>
+                        <label for="exp2">3-5 years</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="exp3" name="experience" value="more_than_5" required>
+                        <label for="exp3">More than 5 years</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="exp4" name="experience" value="no_experience" required>
+                        <label for="exp4">No experience</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Education Level *</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="edu1" name="education" value="unlearned" required>
+                        <label for="edu1">Unlearned (Can not read or write)</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="edu2" name="education" value="learned" required>
+                        <label for="edu2">Learned (Can read and write)</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="edu3" name="education" value="primary" required>
+                        <label for="edu3">Primary (6-8 year)</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="edu4" name="education" value="middle" required>
+                        <label for="edu4">Middle (10-12 year)</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="edu5" name="education" value="secondary" required>
+                        <label for="edu5">Secondary (12 years & more)</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cnic">CNIC *</label>
+                <input type="text" id="cnic" name="cnic" required>
+            </div>
+
+            <div class="form-group">
+                <label for="occupation">Visa Occupation *</label>
+                <select id="occupation" name="occupation" required>
+                    <option value="">Select Occupation</option>
+                    <option value="Agal Tailor">Agal Tailor</option>
+                    <option value="Agricultural equipment mechanic">Agricultural equipment mechanic</option>
+                    <option value="Aircraft cleaning worker">Aircraft cleaning worker</option>
+                    <option value="Animal cart Worker">Animal cart Worker</option>
+                    <option value="Animal farm worker">Animal farm worker</option>
+                    <option value="A sharpener and a metal tool grinder">A sharpener and a metal tool grinder</option>
+                    <option value="Asphalt equipment operator">Asphalt equipment operator</option>
+                    <option value="Asphalting worker">Asphalting worker</option>
+                    <option value="Asphalt roofing agent and synthetic components">Asphalt roofing agent and synthetic components</option>
+                    <option value="Auto Electrician">Auto Electrician</option>
+                    <option value="Auto Glazier">Auto Glazier</option>
+                    <option value="Auto Mechanic">Auto Mechanic</option>
+                    <option value="Auto plumber">Auto plumber</option>
+                    <option value="Baker">Baker</option>
+                    <option value="Barber">Barber</option>
+                    <option value="Barista">Barista</option>
+                    <option value="Bill distributer">Bill distributer</option>
+                    <option value="Blacksmith">Blacksmith</option>
+                    <option value="boiler smith">boiler smith</option>
+                    <option value="Brick and tile kiln operator">Brick and tile kiln operator</option>
+                    <option value="Brick mason">Brick mason</option>
+                    <option value="Builder">Builder</option>
+                    <option value="Building Electrician">Building Electrician</option>
+                    <option value="Building Facade Cleaner">Building Facade Cleaner</option>
+                    <option value="Build stacks">Build stacks</option>
+                    <option value="Bulldozer Operator">Bulldozer Operator</option>
+                    <option value="Bus Driver">Bus Driver</option>
+                    <option value="Bus Mechanic">Bus Mechanic</option>
+                    <option value="Butcher">Butcher</option>
+                    <option value="Car Driver">Car Driver</option>
+                    <option value="Car parking worker">Car parking worker</option>
+                    <option value="Carpenter">Carpenter</option>
+                    <option value="Carpet and rug Cleaner">Carpet and rug Cleaner</option>
+                    <option value="Carpet rug and plastic flooring installer">Carpet rug and plastic flooring installer</option>
+                    <option value="Carrier">Carrier</option>
+                    <option value="Chef">Chef</option>
+                    <option value="Chef in Transportations">Chef in Transportations</option>
+                    <option value="Clay mason">Clay mason</option>
+                    <option value="Clothes Seller">Clothes Seller</option>
+                    <option value="Compressor mechanic">Compressor mechanic</option>
+                    <option value="Concrete Finisher">Concrete Finisher</option>
+                    <option value="Concrete Mixer Driver">Concrete Mixer Driver</option>
+                    <option value="Concrete Mix Worker">Concrete Mix Worker</option>
+                    <option value="Constructing Worker">Constructing Worker</option>
+                    <option value="Construction formwork Carpenter">Construction formwork Carpenter</option>
+                    <option value="Construction Worker">Construction Worker</option>
+                    <option value="Copper Blacksmith">Copper Blacksmith</option>
+                    <option value="Cosmetics and Toiletries Seller">Cosmetics and Toiletries Seller</option>
+                    <option value="Craftsman of wooden products">Craftsman of wooden products</option>
+                    <option value="crusher operator">crusher operator</option>
+                    <option value="Curtain washer">Curtain washer</option>
+                    <option value="Decorative Painter">Decorative Painter</option>
+                    <option value="demolition worker">demolition worker</option>
+                    <option value="Drilling and shell carpenter">Drilling and shell carpenter</option>
+                    <option value="Drilling ground wells">Drilling ground wells</option>
+                    <option value="Drilling Rig Electrician">Drilling Rig Electrician</option>
+                    <option value="Drilling Rig Mechanic">Drilling Rig Mechanic</option>
+                    <option value="drilling worker">drilling worker</option>
+                    <option value="Electrical Devices Maintenance Technician">Electrical Devices Maintenance Technician</option>
+                    <option value="Electrical Equipment Assembler">Electrical Equipment Assembler</option>
+                    <option value="Electrical transformer assembly">Electrical transformer assembly</option>
+                    <option value="Electric Devices Assembler">Electric Devices Assembler</option>
+                    <option value="Electro mechanic">Electro mechanic</option>
+                    <option value="electronic equipment mechanic">electronic equipment mechanic</option>
+                    <option value="Electronic Exchange Assembler">Electronic Exchange Assembler</option>
+                    <option value="Electronic Mechanical Equipment Assembler">Electronic Mechanical Equipment Assembler</option>
+                    <option value="Elevator mechanic">Elevator mechanic</option>
+                    <option value="Embroidery machine operator">Embroidery machine operator</option>
+                    <option value="Embroidery Worker">Embroidery Worker</option>
+                    <option value="Excavator Operator">Excavator Operator</option>
+                    <option value="Explosive agent">Explosive agent</option>
+                    <option value="Farm worker">Farm worker</option>
+                    <option value="Fast food maker">Fast food maker</option>
+                    <option value="Fiber processing machine operator">Fiber processing machine operator</option>
+                    <option value="Firewood collector">Firewood collector</option>
+                    <option value="Flame cutting machine operator">Flame cutting machine operator</option>
+                    <option value="Food and Beverage Seller">Food and Beverage Seller</option>
+                    <option value="Food & Beverages Classifier">Food & Beverages Classifier</option>
+                    <option value="Food & Beverage's Counter Server">Food & Beverage's Counter Server</option>
+                    <option value="Food Peddler">Food Peddler</option>
+                    <option value="Forged press blacksmith">Forged press blacksmith</option>
+                    <option value="Fur Clothing & Bisht Tailor">Fur Clothing & Bisht Tailor</option>
+                    <option value="Furniture Assembling Worker">Furniture Assembling Worker</option>
+                    <option value="Furniture Carpenter">Furniture Carpenter</option>
+                    <option value="Furniture Seller">Furniture Seller</option>
+                    <option value="Garbage Truck Driver">Garbage Truck Driver</option>
+                    <option value="garden clean worker">garden clean worker</option>
+                    <option value="Garment Patternmaker">Garment Patternmaker</option>
+                    <option value="Gas Station Attendant">Gas Station Attendant</option>
+                    <option value="Grader Operator">Grader Operator</option>
+                    <option value="Grocer">Grocer</option>
+                    <option value="Gypsum Worker">Gypsum Worker</option>
+                    <option value="Haddad blades">Haddad blades</option>
+                    <option value="Hairdresser">Hairdresser</option>
+                    <option value="Hardwood floor installer">Hardwood floor installer</option>
+                    <option value="Heavy Equipment Mechanic">Heavy Equipment Mechanic</option>
+                    <option value="Heavy truck Driver">Heavy truck Driver</option>
+                    <option value="Hospital Cleaner">Hospital Cleaner</option>
+                    <option value="Hotel housekeeper">Hotel housekeeper</option>
+                    <option value="House Food Chef">House Food Chef</option>
+                    <option value="HVAC mechanic">HVAC mechanic</option>
+                    <option value="ICT Lines Installer">ICT Lines Installer</option>
+                    <option value="ICT Services Technician">ICT Services Technician</option>
+                    <option value="Inflatable Musical Instruments Maker & Repairer">Inflatable Musical Instruments Maker & Repairer</option>
+                    <option value="Ironer">Ironer</option>
+                    <option value="Ironing machine operator">Ironing machine operator</option>
+                    <option value="Iron press machine operator">Iron press machine operator</option>
+                    <option value="Jeweler precious metal ornament and enameler">Jeweler precious metal ornament and enameler</option>
+                    <option value="Jewelry Seller">Jewelry Seller</option>
+                    <option value="Kitchen Worker">Kitchen Worker</option>
+                    <option value="Labeling worker">Labeling worker</option>
+                    <option value="lathe operator">lathe operator</option>
+                    <option value="Laundry and linen machine operator">Laundry and linen machine operator</option>
+                    <option value="Laundryman">Laundryman</option>
+                    <option value="Light equipment mechanic">Light equipment mechanic</option>
+                    <option value="Lingerie Female Seller">Lingerie Female Seller</option>
+                    <option value="Load and Unload Worker">Load and Unload Worker</option>
+                    <option value="Loader Operator">Loader Operator</option>
+                    <option value="Locksmith">Locksmith</option>
+                    <option value="Manufacturing Officer">Manufacturing Officer</option>
+                    <option value="Marble finishing machine operator">Marble finishing machine operator</option>
+                    <option value="Market Seller">Market Seller</option>
+                    <option value="Meal Maker For a Food Cart">Meal Maker For a Food Cart</option>
+                    <option value="Measuring Instruments Repairer">Measuring Instruments Repairer</option>
+                    <option value="Mechanical Equipment Assembler">Mechanical Equipment Assembler</option>
+                    <option value="Mechanical hammer smith">Mechanical hammer smith</option>
+                    <option value="Men's Clothing Tailor">Men's Clothing Tailor</option>
+                    <option value="Metal boring machine operator">Metal boring machine operator</option>
+                    <option value="Metal caster">Metal caster</option>
+                    <option value="Metal casting machine operator">Metal casting machine operator</option>
+                    <option value="Metal Construction Assembler">Metal Construction Assembler</option>
+                    <option value="Metal extrusion machine operator">Metal extrusion machine operator</option>
+                    <option value="Metal finisher">Metal finisher</option>
+                    <option value="Metal forging machine operator">Metal forging machine operator</option>
+                    <option value="Metal galvanizing machine operator">Metal galvanizing machine operator</option>
+                    <option value="Metal grinding and polishing equipment operator">Metal grinding and polishing equipment operator</option>
+                    <option value="Metal heat treatment machine operator">Metal heat treatment machine operator</option>
+                    <option value="Metal mold maker">Metal mold maker</option>
+                    <option value="Metal rolling machine operator">Metal rolling machine operator</option>
+                    <option value="Military Tailor">Military Tailor</option>
+                    <option value="Mine machines operator">Mine machines operator</option>
+                    <option value="Miner">Miner</option>
+                    <option value="Mine roofing installer">Mine roofing installer</option>
+                    <option value="Mining equipment mechanic">Mining equipment mechanic</option>
+                    <option value="Mining worker">Mining worker</option>
+                    <option value="Minitruck driver">Minitruck driver</option>
+                    <option value="mosaic composite">mosaic composite</option>
+                    <option value="Mosaic molding agent">Mosaic molding agent</option>
+                    <option value="Mosque Caretaker">Mosque Caretaker</option>
+                    <option value="Motorcycle Driver">Motorcycle Driver</option>
+                    <option value="Motorcycle mechanic">Motorcycle mechanic</option>
+                    <option value="Nail Care Specialist">Nail Care Specialist</option>
+                    <option value="Naval Construction Diver">Naval Construction Diver</option>
+                    <option value="Newspaper Seller">Newspaper Seller</option>
+                    <option value="NMVs Repairer">NMVs Repairer</option>
+                    <option value="Nursery worker">Nursery worker</option>
+                    <option value="Offices and Facilities Cleaning Worker">Offices and Facilities Cleaning Worker</option>
+                    <option value="Offshore drilling rig">Offshore drilling rig</option>
+                    <option value="Optical Instruments Repairer">Optical Instruments Repairer</option>
+                    <option value="Ore smelter operator">Ore smelter operator</option>
+                    <option value="Packaging worker">Packaging worker</option>
+                    <option value="Packing the shelves worker">Packing the shelves worker</option>
+                    <option value="Painter">Painter</option>
+                    <option value="Pantry Chef">Pantry Chef</option>
+                    <option value="Peddler">Peddler</option>
+                    <option value="Peddler-Green Grocer">Peddler-Green Grocer</option>
+                    <option value="Percussion Musical Instruments Maker & Repairer">Percussion Musical Instruments Maker & Repairer</option>
+                    <option value="Perfume Seller">Perfume Seller</option>
+                    <option value="Pipe and Boiler Insulation Worker">Pipe and Boiler Insulation Worker</option>
+                    <option value="Pipe installer">Pipe installer</option>
+                    <option value="Plasterer">Plasterer</option>
+                    <option value="Plumber">Plumber</option>
+                    <option value="Poultry and birds farm worker">Poultry and birds farm worker</option>
+                    <option value="Power Cable Connector">Power Cable Connector</option>
+                    <option value="Power Distribution Boards Assembler">Power Distribution Boards Assembler</option>
+                    <option value="Power Lines Operator">Power Lines Operator</option>
+                    <option value="Precision instrument repairer">Precision instrument repairer</option>
+                    <option value="Product sorting worker">Product sorting worker</option>
+                    <option value="Products Spray Painter">Products Spray Painter</option>
+                    <option value="Quarry worker">Quarry worker</option>
+                    <option value="Readymix concrete construction">Readymix concrete construction</option>
+                    <option value="Refrigeration assembler">Refrigeration assembler</option>
+                    <option value="Refrigeration mechanic">Refrigeration mechanic</option>
+                    <option value="Riveting worker">Riveting worker</option>
+                    <option value="Road maintenance worker">Road maintenance worker</option>
+                    <option value="Road roller operator">Road roller operator</option>
+                    <option value="Roofing Sheet metal worker">Roofing Sheet metal worker</option>
+                    <option value="Roofs Cleaner">Roofs Cleaner</option>
+                    <option value="Roof slate and tiles worker">Roof slate and tiles worker</option>
+                    <option value="Sanitation cleaner">Sanitation cleaner</option>
+                    <option value="Scaffold Laborer">Scaffold Laborer</option>
+                    <option value="Seller">Seller</option>
+                    <option value="Seller of Agricultural Supplies">Seller of Agricultural Supplies</option>
+                    <option value="Seller of Building Materials">Seller of Building Materials</option>
+                    <option value="Seller of Flowers and Plants">Seller of Flowers and Plants</option>
+                    <option value="Seller of Fuelwood and Coal">Seller of Fuelwood and Coal</option>
+                    <option value="Seller of Household Appliances and Tools">Seller of Household Appliances and Tools</option>
+                    <option value="Seller of Musical Instruments">Seller of Musical Instruments</option>
+                    <option value="Seller of Vehicles Spare Parts">Seller of Vehicles Spare Parts</option>
+                    <option value="Seller of Vehicles Supplies">Seller of Vehicles Supplies</option>
+                    <option value="Sewing and Knitting Supplies Seller">Sewing and Knitting Supplies Seller</option>
+                    <option value="Sewing machine operator">Sewing machine operator</option>
+                    <option value="Ship carpenter">Ship carpenter</option>
+                    <option value="Ship cleaning worker">Ship cleaning worker</option>
+                    <option value="Shoes and Bags Seller">Shoes and Bags Seller</option>
+                    <option value="Sifting machine operator">Sifting machine operator</option>
+                    <option value="Slaughterer">Slaughterer</option>
+                    <option value="Soil samples collector">Soil samples collector</option>
+                    <option value="Spice Seller">Spice Seller</option>
+                    <option value="Spray Painter">Spray Painter</option>
+                    <option value="Stall seller">Stall seller</option>
+                    <option value="Stone cutter">Stone cutter</option>
+                    <option value="Stone engraver">Stone engraver</option>
+                    <option value="Stone mason">Stone mason</option>
+                    <option value="stones">stones</option>
+                    <option value="Store Keeper">Store Keeper</option>
+                    <option value="Street clean worker">Street clean worker</option>
+                    <option value="String Musical Instruments Maker & Repairer">String Musical Instruments Maker & Repairer</option>
+                    <option value="Sweets Maker">Sweets Maker</option>
+                    <option value="Swimming pool cleaner">Swimming pool cleaner</option>
+                    <option value="Tailor">Tailor</option>
+                    <option value="Tank Truck">Tank Truck</option>
+                    <option value="Taxi Driver">Taxi Driver</option>
+                    <option value="Textile Seller">Textile Seller</option>
+                    <option value="Tile cleaning worker">Tile cleaning worker</option>
+                    <option value="Tile making machine operator">Tile making machine operator</option>
+                    <option value="Tile setter">Tile setter</option>
+                    <option value="Timber and mud roofing worker">Timber and mud roofing worker</option>
+                    <option value="Tinsmith">Tinsmith</option>
+                    <option value="Tire Installer">Tire Installer</option>
+                    <option value="Tool and kit maker">Tool and kit maker</option>
+                    <option value="Trailer Truck Driver">Trailer Truck Driver</option>
+                    <option value="Train cleaning worker">Train cleaning worker</option>
+                    <option value="Transport car worker">Transport car worker</option>
+                    <option value="Truck Driver">Truck Driver</option>
+                    <option value="Underwater welder">Underwater welder</option>
+                    <option value="Unique Occupation Worker">Unique Occupation Worker</option>
+                    <option value="Used tires reconstruction worker">Used tires reconstruction worker</option>
+                    <option value="Valet Parking Attendant">Valet Parking Attendant</option>
+                    <option value="Vehicle Assembler">Vehicle Assembler</option>
+                    <option value="Vehicles Oiler and Greaser">Vehicles Oiler and Greaser</option>
+                    <option value="Vehicles Seller">Vehicles Seller</option>
+                    <option value="Veneer making machine operator">Veneer making machine operator</option>
+                    <option value="Waiter">Waiter</option>
+                    <option value="Wallpaper Hanger">Wallpaper Hanger</option>
+                    <option value="Warehouse Worker">Warehouse Worker</option>
+                    <option value="Waste collector">Waste collector</option>
+                    <option value="Waste sorter">Waste sorter</option>
+                    <option value="Watch Repairer">Watch Repairer</option>
+                    <option value="Watch Seller">Watch Seller</option>
+                    <option value="Water collector">Water collector</option>
+                    <option value="Weaving Canes, Bamboo, Fronds & Wicker Artificer">Weaving Canes, Bamboo, Fronds & Wicker Artificer</option>
+                    <option value="Welder">Welder</option>
+                    <option value="Wheelbarrow worker">Wheelbarrow worker</option>
+                    <option value="Windows cleaner">Windows cleaner</option>
+                    <option value="Wire Robe Technician">Wire Robe Technician</option>
+                    <option value="Women's Clothing Tailor">Women's Clothing Tailor</option>
+                    <option value="Wood cutting machine operator">Wood cutting machine operator</option>
+                    <option value="Wood Drying Oven Operator">Wood Drying Oven Operator</option>
+                    <option value="Wooden formwork carpenter">Wooden formwork carpenter</option>
+                    <option value="Wood planing machine operator">Wood planing machine operator</option>
+                    <option value="Wood Press Machine Operator">Wood Press Machine Operator</option>
+                    <option value="Wood Processor">Wood Processor</option>
+                    <option value="Wood Product Manufacturing Machine Operator">Wood Product Manufacturing Machine Operator</option>
+                    <option value="Wood saw operator">Wood saw operator</option>
+                    <option value="Wood Shaping Machine Operator">Wood Shaping Machine Operator</option>
+                    <option value="Woodworking Machines and Tools Operator and Preparer">Woodworking Machines and Tools Operator and Preparer</option>
+                    <option value="Worker to clean kitchen appliances">Worker to clean kitchen appliances</option>
+                    <option value="Workshop Worker">Workshop Worker</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="passportPhoto">Passport Photo *</label>
+                <input type="file" id="passportPhoto" name="passportPhoto" accept="image/*" required>
+                <small style="color: #666; font-size: 12px;">Upload a clear photo of your passport (JPG, PNG, max 5MB)</small>
+            </div>
+
+        </form>
+    </div>
+</main>
+
+<!-- IMPORTANT NOTICE SECTION -->
+<div class="form-section notice-section">
+    <div class="notice-header">
+        <i class="fas fa-exclamation-triangle"></i>
+        <h3>Important Payment Notice</h3>
+    </div>
+
+    <div class="notice-content">
+        <div class="notice-item">
+            <i class="fas fa-money-bill-wave"></i>
+            <div class="notice-text">
+                <strong>Payment Amount:</strong> Rs. 16,999 
+            </div>
+        </div>
+
+        
+
+        <div class="notice-item">
+            <i class="fab fa-whatsapp"></i>
+            <div class="notice-text">
+                <strong>Verification:</strong> After payment, share screenshot on WhatsApp (+92-333-8181082)
+            </div>
+        </div>
+    </div>
+
+    <div class="notice-footer">
+        <p class="english-text">
+            Pay the total amount of 16,999 on one of the above given account numbers and after payment share the screenshot of payment on WhatsApp (+92-333-8181082) for the confirmation purpose. Thank You!
+        </p>
+
+       <p class="urdu-text">
+    مذکورہ اکاؤنٹ نمبر میں سے کسی ایک پر کل رقم 16,999 ادا کریں۔ ادائیگی کے بعد تصدیق کے مقصد کے لیے ادائیگی کا اسکرین شاٹ WhatsApp (+92-333-8181082) پر شیئر کریں۔ شکریہ!
+</p>
+    </div>
+</div>
+
+<!-- PAYMENT SECTION -->
+<div class="form-section" id="paymentSection">
+
+<h2 class="section-title">
+<i class="fas fa-credit-card"></i> Payment Details
+</h2>
+
+<div class="packages-section">
+
+<!-- JAZZCASH / EASYPAISA -->
+<div class="package-card selected" style="cursor:default;">
+    <h3>JazzCash </h3>
+    <img src="qr1.jpg" style="width:50%; border-radius:10px; margin:10px 0;">
+    <p><b>Number:</b> 03458181082</p>
+</div>
+<div class="package-card selected" style="cursor:default;">
+    <h3>Easypaisa</h3>
+    <img src="qr3.jpg" style="width:50%; border-radius:10px; margin:10px 0;">
+    <p><b>Number:</b> 03458181082</p>
+</div>
+<!-- BANK -->
+<div class="package-card" style="cursor:default;">
+    <h3>Bank Transfer</h3>
+    <img src="qr2.jpg" style="width:100%; border-radius:10px; margin:10px 0;">
+    <p><b>Bank:</b> Bank Of Punjab</p>
+    <p><b>Account:</b> 5010085253500018</p>
+    <p><b>IBAN:</b> PK48BPUN5010085253500018</p>
+</div>
+
+</div>
+
+<br>
+
+<h3>Payment Confirmation</h3>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Select Payment Method</label>
+<select id="paymentMethod" required>
+    <option value="">Select</option>
+    <option value="Bank Transfer">Bank Transfer</option>
+    <option value="JazzCash">JazzCash</option>
+    <option value="Easypaisa">Easypaisa</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Your Account / Mobile Number</label>
+<input type="text" id="customerAcc" placeholder="e.g 03XXXXXXXXX">
+</div>
+
+<div class="form-group">
+<label>Account Holder Name</label>
+<input type="text" id="senderName">
+</div>
+<div><p style="color:red;font-weight:bold;">
+After payment, please send screenshot on WhatsApp for verification.
+</p></div>
+</div>
+
+</div>
+
+<!-- SUBMIT BUTTON -->
+<div style="text-align: center; margin: 40px 0;">
+    <button type="submit" class="submit-btn" form="registrationForm">Submit Registration</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+
+    <div class="social-icons">
+        <a href="https://youtube.com/@hameedphotostudio9298?si=P5aayDx3hNtWAXXi"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.facebook.com/share/1ApuWfmQ8s/?mibextid=wwXIfr"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/photohome92?igsh=MTJpOGVwdml5ODFxcg=="><i class="fab fa-instagram"></i></a>
+        <a href="https://maps.app.goo.gl/M4PBpMRiMDvFXYfp9"><i class="fas fa-map-marker-alt"></i></a>
+    </div>
+
+    <div class="footer-logo">
+        <img src="logo2.jpg">
+    </div>
+
+</footer>
+
+<script>
+// Handle first name checkbox
+const noFirstNameCheckbox = document.getElementById('noFirstName');
+if (noFirstNameCheckbox) {
+    noFirstNameCheckbox.addEventListener('change', function() {
+        const firstNameInput = document.getElementById('firstName');
+        if (this.checked) {
+            firstNameInput.required = false;
+            firstNameInput.disabled = true;
+            firstNameInput.value = '';
+        } else {
+            firstNameInput.required = true;
+            firstNameInput.disabled = false;
+        }
+    });
+}
+
+// Handle last name checkbox
+const noLastNameCheckbox = document.getElementById('noLastName');
+if (noLastNameCheckbox) {
+    noLastNameCheckbox.addEventListener('change', function() {
+        const lastNameInput = document.getElementById('lastName');
+        if (this.checked) {
+            lastNameInput.required = false;
+            lastNameInput.disabled = true;
+            lastNameInput.value = '';
+        } else {
+            lastNameInput.required = true;
+            lastNameInput.disabled = false;
+        }
+    });
+}
+
+function getFieldLabel(el) {
+    if (el.id) {
+        const label = document.querySelector(`label[for="${el.id}"]`);
+        if (label) {
+            return label.textContent.trim().replace(/\s*\*+\s*$/, '');
+        }
+    }
+    if (el.name) return el.name;
+    return el.id || 'Field';
+}
+
+function getFieldValue(el) {
+    if (el.type === 'file') {
+        return el.files && el.files.length ? el.files[0].name : 'No file uploaded';
+    }
+    if (el.type === 'checkbox') {
+        return el.checked ? 'Yes' : 'No';
+    }
+    if (el.type === 'radio') {
+        const checked = document.querySelector(`input[name="${el.name}"]:checked`);
+        return checked ? checked.value : 'Not selected';
+    }
+    return el.value.trim() || 'N/A';
+}
+
+function appendField(lines, el, addedGroups) {
+    if (!el.name && !el.id) return;
+    if (['button', 'submit', 'reset'].includes(el.type)) return;
+    if (el.type === 'radio') {
+        if (addedGroups.has(el.name)) return;
+        addedGroups.add(el.name);
+    }
+    const label = getFieldLabel(el);
+    const value = getFieldValue(el);
+    lines.push(`${label}: ${value}`);
+}
+
+const bookingForm = document.getElementById('registrationForm');
+if (bookingForm) {
+    bookingForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        if (!bookingForm.checkValidity()) {
+            bookingForm.reportValidity();
+            return;
+        }
+
+        const paymentFields = Array.from(document.querySelectorAll('#paymentSection input[required], #paymentSection select[required]'));
+        for (const field of paymentFields) {
+            if (!field.checkValidity()) {
+                field.reportValidity();
+                field.focus();
+                return;
+            }
+        }
+
+        const lines = [];
+        const addedGroups = new Set();
+
+        const formFields = Array.from(bookingForm.querySelectorAll('input, select, textarea'));
+        const otherPaymentFields = Array.from(document.querySelectorAll('#paymentSection input, #paymentSection select'));
+
+        formFields.concat(otherPaymentFields).forEach(el => appendField(lines, el, addedGroups));
+
+        const phone = '923338181082';
+        const message = `📋 Skills Verification Registration Details\n\n${lines.join('\n')}\n\n*Send your passport photo*`;
+        const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+        window.open(url, '_blank');
+    });
+}
+</script>
+
+</body>
+</html>
