@@ -40,8 +40,8 @@ header {
 
 .header-text {
     color: black;
-    font-size: 16px;
     margin-right: 10px;
+    font-weight: bold;
 }
 
 .menu-icon {
@@ -290,13 +290,9 @@ footer {
 }
 
 .footer-top-label {
-    display: inline-block;
-    background: #1e8c8d;
-    color: white;
-    padding: 12px 22px;
-    border-radius: 999px;
+    color: black;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: normal;
     margin-bottom: 18px;
 }
 
@@ -1428,4 +1424,12 @@ if (bookingForm) {
 
         const phone = '923338181082';
         const message = `📋 Skills Verification Registration Details\n\n${lines.join('\n')}\n\n*Send your passport photo*`;
-       
+        const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+        window.open(url, '_blank');
+    });
+}
+</script>
+
+</body>
+</html>
