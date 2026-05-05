@@ -21,6 +21,7 @@ header {
     width: 100%;
     padding: 0px 40px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -30,6 +31,84 @@ header {
 .logo a {
     text-decoration: none;
 }
+
+/* RIGHT SECTION */
+.right-section {
+    display: flex;
+    align-items: center;
+}
+
+.header-text {
+    color: black;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.menu-icon {
+    font-size: 28px;
+    color: black;
+    cursor: pointer;
+}
+
+/* SIDE MENU */
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 320px;
+    height: 100%;
+    background: rgba(255,255,255,0.60);
+    backdrop-filter: blur(12px);
+    padding: 25px;
+    transition: 0.3s;
+}
+
+.side-menu.active { right: 0; }
+
+.close-btn {
+    font-size: 24px;
+    text-align: right;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+/* MENU */
+.side-menu ul { list-style: none; }
+
+.side-menu ul li {
+    padding: 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.side-menu ul li a {
+    display: block;
+    padding: 15px 0;
+    cursor: pointer;
+    color: #333;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.side-menu ul li a:hover {
+    color: #1e8c8d;
+}
+
+/* CONTACT SMOOTH DROPDOWN */
+.contact-arrow { float: right; }
+
+.contact-dropdown {
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.4s ease;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.contact.active .contact-dropdown {
+    max-height: 100px;
+    margin-top: 10px;
+}
+
 main {
     min-height: calc(100vh - 190px);
     padding: 60px 40px 40px;
@@ -111,98 +190,19 @@ footer {
     padding: 40px;
     text-align: center;
 }
+
+.footer-top-label {
+    display: inline-block;
+    background: #1e8c8d;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
 .social-icons {
     display: flex;
     justify-content: center;
     gap: 18px;
-    margin-bottom: 20px;
-}
-.social-icons a {
-    width: 45px;
-    height: 45px;
-    background: #e0e0e0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    color: #1e8c8d;
-    font-size: 18px;
-    transition: 0.3s;
-}
-.social-icons a:hover {
-    background: #1e8c8d;
-    color: white;
-}
-.footer-logo img {
-    height: 50px;
-}
-@media (max-width: 640px) {
-    header {
-        padding: 18px 20px;
-        flex-direction: column;
-        gap: 18px;
-    }
-    main {
-        padding: 40px 20px 30px;
-    }
-    .option-card {
-        padding: 28px 22px;
-    }
-}
-</style>
-</head>
-<body>
-<header>
-    <div class="logo">
-        <a href="index.html"><img src="logo3.jpg" alt="Logo"></a>
-    </div>
-</header>
-<main>
-    <div class="page-intro">
-        <h1>Choose Your Next Step</h1>
-        <p>Find a professional service path below for NAVTTC application, result checking, and certificate verification. Each option is clearly presented so you can continue quickly and confidently.</p>
-    </div>
-    <div class="option-grid">
-        <div class="option-card">
-            <div class="option-icon"><i class="fas fa-calendar-check"></i></div>
-            <h2>New Appointment</h2>
-            <p>Apply for the NAVTTC test through our dedicated appointment system and reserve your evaluation slot with ease.</p>
-            <a href="book.html" class="action-btn"><i class="fas fa-arrow-right"></i> Apply for NAVTTC Test</a>
-        </div>
-        <div class="option-card">
-            <div class="option-icon"><i class="fas fa-search"></i></div>
-            <h2>Check Result</h2>
-            <p>Verify your applicant status and review scores from your NAVTTC examination using the official result portal.</p>
-            <a href="https://svp-international.pacc.sa/applicant-result" class="action-btn"><i class="fas fa-arrow-right"></i> View Results</a>
-        </div>
-        <div class="option-card">
-            <div class="option-icon"><i class="fas fa-certificate"></i></div>
-            <h2>Certificate Verification</h2>
-            <p>Confirm the authenticity of your NAVTTC certificate quickly and securely with the certified verification service.</p>
-            <a href="https://svp-international.pacc.sa/check-certificate" class="action-btn"><i class="fas fa-arrow-right"></i> Verify Certificate</a>
-        </div>
-    </div>
-</main>
-<footer>
-    <div class="social-icons">
-        <a href="https://youtube.com/@hameedphotostudio9298?si=P5aayDx3hNtWAXXi"><i class="fab fa-youtube"></i></a>
-        <a href="https://www.facebook.com/share/1ApuWfmQ8s/?mibextid=wwXIfr"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/photohome92?igsh=MTJpOGVwdml5ODFxcg=="><i class="fab fa-instagram"></i></a>
-        <a href="https://maps.app.goo.gl/M4PBpMRiMDvFXYfp9"><i class="fas fa-map-marker-alt"></i></a>
-    </div>
-    <div class="footer-logo">
-        <img src="logo2.jpg" alt="Footer Logo">
-    </div>
-</footer>
-<script>
-document.querySelectorAll('.option-card').forEach(card => {
-    card.addEventListener('click', function() {
-        const link = this.querySelector('a.action-btn');
-        if (link) {
-            window.location.href = link.href;
-        }
-    });
-});
-</script>
-</body>
-</html>
