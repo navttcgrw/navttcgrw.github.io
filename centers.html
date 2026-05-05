@@ -21,6 +21,7 @@ header {
     width: 100%;
     padding: 0px 40px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -29,6 +30,83 @@ header {
 
 .logo a {
     text-decoration: none;
+}
+
+/* RIGHT SECTION */
+.right-section {
+    display: flex;
+    align-items: center;
+}
+
+.header-text {
+    color: black;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.menu-icon {
+    font-size: 28px;
+    color: black;
+    cursor: pointer;
+}
+
+/* SIDE MENU */
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 320px;
+    height: 100%;
+    background: rgba(255,255,255,0.60);
+    backdrop-filter: blur(12px);
+    padding: 25px;
+    transition: 0.3s;
+}
+
+.side-menu.active { right: 0; }
+
+.close-btn {
+    font-size: 24px;
+    text-align: right;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+/* MENU */
+.side-menu ul { list-style: none; }
+
+.side-menu ul li {
+    padding: 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.side-menu ul li a {
+    display: block;
+    padding: 15px 0;
+    cursor: pointer;
+    color: #333;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.side-menu ul li a:hover {
+    color: #1e8c8d;
+}
+
+/* CONTACT SMOOTH DROPDOWN */
+.contact-arrow { float: right; }
+
+.contact-dropdown {
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.4s ease;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.contact.active .contact-dropdown {
+    max-height: 100px;
+    margin-top: 10px;
 }
 
 /* MAIN CONTENT */
@@ -113,6 +191,17 @@ footer {
     text-align: center;
 }
 
+.footer-top-label {
+    display: inline-block;
+    background: #1e8c8d;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
 .social-icons {
     display: flex;
     justify-content: center;
@@ -152,7 +241,28 @@ footer {
             <img src="logo3.jpg">
         </a>
     </div>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
 </header>
+
+<!-- SIDE MENU -->
+<div class="side-menu" id="menu">
+    <div class="close-btn" onclick="toggleMenu()">✕</div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="https://svp-international.pacc.sa/check-certificate">Certificate Verification</a></li>
+        <li><a href="https://svp-international.pacc.sa/applicant-result">Applicant Result</a></li>
+        <li><a href="book.html">Book Appointment</a></li>
+        <li><a href="centers.html">Our Centers</a></li>
+        <li><a href="option.html">Options</a></li>
+        <li class="contact" onclick="toggleContact(this)">
+            <a>Contact Us <span class="contact-arrow">▼</span></a>
+            <div class="contact-dropdown">
+                <p><i class="fas fa-phone"></i> +92-333-8181082</p>
+                <p><i class="fas fa-envelope"></i> info@svp-international.com</p>
+            </div>
+        </li>
+    </ul>
+</div>
 
 <!-- MAIN CONTENT -->
 <main>
@@ -198,6 +308,7 @@ footer {
 
 <!-- FOOTER -->
 <footer>
+    <div class="footer-top-label">Markaz-e-Khidmat Mutakamal</div>
     <div class="social-icons">
         <a href="https://youtube.com/@hameedphotostudio9298?si=P5aayDx3hNtWAXXi"><i class="fab fa-youtube"></i></a>
         <a href="https://www.facebook.com/share/1ApuWfmQ8s/?mibextid=wwXIfr"><i class="fab fa-facebook-f"></i></a>
@@ -208,6 +319,16 @@ footer {
         <img src="logo2.jpg">
     </div>
 </footer>
+
+<script>
+function toggleMenu() {
+    document.getElementById("menu").classList.toggle("active");
+}
+
+function toggleContact(el) {
+    el.classList.toggle("active");
+}
+</script>
 
 </body>
 </html>
