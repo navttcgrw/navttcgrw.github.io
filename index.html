@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="/favicon.ico">
 <title>Skills Verification Program</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -36,6 +35,17 @@ header {
     font-size: 28px;
     color: white;
     cursor: pointer;
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+}
+
+.header-text {
+    color: white;
+    font-size: 16px;
+    margin-right: 10px;
 }
 
 /* SIDE MENU */
@@ -239,6 +249,17 @@ footer {
     text-align: center;
 }
 
+.footer-top-label {
+    display: inline-block;
+    background: #1e8c8d;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
 .social-icons {
     display: flex;
     justify-content: center;
@@ -289,13 +310,14 @@ footer {
         <li><a href="index.html">Home</a></li>
         <li><a href="https://svp-international.pacc.sa/check-certificate">Certificate Verification</a></li>
         <li><a href="https://svp-international.pacc.sa/applicant-result">Applicant Result</a></li>
-        <li><a href="centers.html">Appointment Centres</a></li>
-
+        <li><a href="book.html">Book Appointment</a></li>
+        <li><a href="centers.html">Our Centers</a></li>
+        <li><a href="option.html">Options</a></li>
         <li class="contact" onclick="toggleContact(this)">
-            Contact <span class="contact-arrow">▾</span>
+            <a>Contact Us <span class="contact-arrow">▼</span></a>
             <div class="contact-dropdown">
-                <p>navttcgrw@gmail.com</p>
-                <p>+923338181082</p>
+                <p><i class="fas fa-phone"></i> +92-333-8181082</p>
+                <p><i class="fas fa-envelope"></i> info@svp-international.com</p>
             </div>
         </li>
     </ul>
@@ -319,7 +341,7 @@ footer {
 
 <!-- FOOTER -->
 <footer>
-
+    <div class="footer-top-label">Markaz-e-Khidmat Mutakamal</div>
     <div class="social-icons">
         <a href="https://youtube.com/@hameedphotostudio9298?si=P5aayDx3hNtWAXXi"><i class="fab fa-youtube"></i></a>
         <a href="https://www.facebook.com/share/1ApuWfmQ8s/?mibextid=wwXIfr"><i class="fab fa-facebook-f"></i></a>
